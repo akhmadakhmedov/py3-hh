@@ -11,3 +11,4 @@ django-admin startapp core
 or
 python manage.py startapp worker
 
+Will be added git steps
