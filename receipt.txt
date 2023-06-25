@@ -1,0 +1,13 @@
+python -m venv venv
+call source\Scripts\activate
+pip install django
+pip freeze > requirements.txt
+django-admin startproject .
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+
+django-admin startapp core
+or
+python manage.py startapp worker
+
