@@ -12,3 +12,22 @@ or
 python manage.py startapp worker
 
 Will be added git steps
+.
+.
+.
+
+If any code changed need to update git repository
+-git add .
+-git commit -m "Edited this one"
+-git push
+
+#Clone code from GIT
+cd projectFolder
+git clone https://...
+
+#MODELS
+class Vacancy in core/models
+python manage.py makemigrations
+python manage.py migrate
+
+need to check

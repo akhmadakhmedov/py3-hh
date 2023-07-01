@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponse
-
+from .models import Vacancy
 # Create your views here.
 
 def homepage(request):
-    return HttpResponse("hi")
+    return render(request=request, template_name='index.html')
 
 def about(request):
     return HttpResponse('''
@@ -25,3 +25,8 @@ def address(request):
                             <li>Osh City, Osh District</li>
                         </ul>
                         ''')
+
+def vacancy_list(request):
+    vacancies = Vacancy.objects.all() # v DJANGO ORM "SELECT * FROM Vacancies"
+    context = {'vacancies': vacancies} # context data for jinja2
+    return render(request, 'vacancies.html', context)
