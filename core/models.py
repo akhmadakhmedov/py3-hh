@@ -10,3 +10,14 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Company(models.Model):
+    name = models.CharField(max_length=255)
+    address = models.TextField(default='Address does not shown')
+    staff_quantity = models.IntegerField()
+    is_hunting = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return self.name
