@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Informasii o sotrudnike</h1>
+    <ul>
+        <ol>Login: {{ worker.user.username }}</ol>
+        <ol>Name: {{ worker.name }}</ol>
+        <ol>Spesialisation: {{ worker.specialisation }}</ol>
+        <ol>Expected salary : {{ worker.expectated_salary }}</ol>
+        <ol>Is looking for a job: {{ worker.is_searching }}</ol>
+    </ul>
+
+    <h2>Searched vacancies</h2>
+    {% for v in worker.vacancy_set.all %}
+        <div>{{ v.title}} </div>
+    {% endfor %}
+</body>
+</html>
