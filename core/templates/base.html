@@ -16,7 +16,30 @@
         <a href="/">Homepage</a>
         <a href="/vacancies">Vacancy</a>
         <a href="/workers">Workers</a>
+        <a href="/resume-list">Resumes</a>
+
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'my-resume' %}">My Resume</a>
+            <a href="{% url 'add-resume' %}">Add</a>
+            Hello, {{ request.user.username }}!
+        {% else %}
+            Please sign in
+        {% endif %}
+
     </nav>
+    <br>
+    <div>
+        <span>
+            <form method="GET" action="/search">
+                <input
+                        type="text"
+                        placeholder="Text here",
+                        name="keyword">
+                <button>Search</button>
+            </form>
+        </span>
+    </div>
+    <hr>
     {% block content %}
 
     {% endblock %}

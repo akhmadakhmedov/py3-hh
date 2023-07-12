@@ -30,3 +30,18 @@ def vacancy_list(request):
     vacancies = Vacancy.objects.all() # v DJANGO ORM "SELECT * FROM Vacancies"
     context = {'vacancies': vacancies} # context data for jinja2
     return render(request, 'vacancies.html', context)
+
+def vacancy_detail(request, id):
+    vacancy_object = Vacancy.objects.get(id=id) # one object
+    candidates = vacancy_object.candidate.all() #list
+    context = {
+        'vacancy': vacancy_object,
+        'candidates_list': candidates
+        }
+    return render(request, 'vacancy/vacancy_page.html', context)
+
+def search(request):
+    word = request.GET['keyword']
+    vacancy_list = Vacancy.objects.filter(title__contains=word)
+    context = {'vacancies': vacancy_list}
+    return render(request, 'vacancies.html', context)

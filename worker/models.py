@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Worker(models.Model):
     user = models.OneToOneField(
-        to = User,
+        to=User,
         null=True,
         blank=False,
         on_delete=models.SET_NULL
