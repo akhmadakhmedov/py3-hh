@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from .models import Vacancy
 from django.contrib.auth.models import User
 
@@ -46,20 +46,6 @@ def search(request):
     context = {'vacancies': vacancy_list}
     return render(request, 'vacancies.html', context)
 
-def add_vacancy(request):
-    template = 'vacancy/vacancy_add.html'
-    if request.method == 'GET':
-        # show the FORM
-        return render(request, template)
-    #elif request.method == 'POST':
-    #    # add resume to Data Base
-    #    new_vacancy = Vacancy()
-    #    new_vacancy.worker = request.user.worker
-    #    new_resume.title = request.POST['form-title']
-    #    new_resume.text = request.POST['form-text']
-    #    new_resume.save()
-    #    return HttpResponse('New resume has been added')
-
 def reg_view(request):
     if request.method == 'POST':
         user= User(
@@ -74,3 +60,16 @@ def reg_view(request):
         request,
         'auth/register.html'
     )
+
+def vacancy_add(request):
+    if request.method == 'POST':
+        new_vacancy = Vacancy(
+            title=request.POST['title'],
+            salary=int(request.POST['salary']),
+            description=request.POST['description'],
+            email=request.POST['email'],
+            contacts=request.POST['contacts'],
+        )
+        new_vacancy.save()
+        return redirect(f'/vacancy/{new_vacancy.id}/') #new_vacancy.id
+    return render(request, 'vacancy/vacancy_form.html')

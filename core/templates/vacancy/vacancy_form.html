@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form method='POST'>
+        {% csrf_token %}
+        <input type="text", name="title" placeholder="title"><br><br>
+        <input type="number", name="salary" placeholder="salary"><br><br>
+        <textarea name="description" cols="20" rows="5" placeholder="details"></textarea><br><br>
+        <input type="email", name='email' placeholder="xxx@gmail.com"><br><br>
+        <input type="text", name="contacts" placeholder="+9967555057501"><br><br>
+        <button>Add / Save</button>
+
+    </form>
+
+{% endblock %}
