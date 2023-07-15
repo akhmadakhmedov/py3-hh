@@ -32,7 +32,7 @@ def my_resume(request):
         # resume_query = request.user.worker.resume.all()
         return render(
             request, 'resume/resume_list.html',
-            {'resume': resume_query}
+            {'resumes': resume_query}
         )
     else:
         return redirect('home')

@@ -35,5 +35,7 @@ urlpatterns = [
     path('my-resume/', my_resume, name='my-resume'),
     path("search/", search, name='search'),
     path('add-resume/', add_resume, name='add-resume'),
+    path('add-vacancy', add_vacancy, name='add-vacancy'),
+    path('registration/', reg_view, name='reg'),
 
 ]

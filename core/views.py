@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .models import Vacancy
-# Create your views here.
+from django.contrib.auth.models import User
 
 def homepage(request):
     return render(request=request, template_name='index.html')
@@ -45,3 +45,32 @@ def search(request):
     vacancy_list = Vacancy.objects.filter(title__contains=word)
     context = {'vacancies': vacancy_list}
     return render(request, 'vacancies.html', context)
+
+def add_vacancy(request):
+    template = 'vacancy/vacancy_add.html'
+    if request.method == 'GET':
+        # show the FORM
+        return render(request, template)
+    #elif request.method == 'POST':
+    #    # add resume to Data Base
+    #    new_vacancy = Vacancy()
+    #    new_vacancy.worker = request.user.worker
+    #    new_resume.title = request.POST['form-title']
+    #    new_resume.text = request.POST['form-text']
+    #    new_resume.save()
+    #    return HttpResponse('New resume has been added')
+
+def reg_view(request):
+    if request.method == 'POST':
+        user= User(
+            username = request.POST['username']
+        )
+        user.save()
+        user.set_password(request.POST['password'])
+        user.save()
+        return HttpResponse('Completed')
+
+    return render(
+        request,
+        'auth/register.html'
+    )
