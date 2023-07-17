@@ -4,9 +4,8 @@
 
     <form method="POST">
         {% csrf_token %}
-        <input type = 'text', name="title" placeholder="Title" value="{{ resume.title }}"><br><br>
-        <textarea name="description" cols="20" rows="5" placeholder="Description" value="{{ resume.description }}"></textarea><br><br>
-        <button>Edit</button>
+        {{ form.as_p }}
+        <button>Save and Edit</button>
     </form>
 
 {% endblock %}

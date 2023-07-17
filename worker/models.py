@@ -44,7 +44,7 @@ class Resume(models.Model):
         related_name='resume'
     )
     title = models.CharField(max_length=255)
-    text  = models.TextField()
+    text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
 
