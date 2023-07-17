@@ -51,6 +51,17 @@ def add_resume(request):
         new_resume.save()
         return HttpResponse('New resume has been added')
 
+def resume_edit(request, id):
+    resume = Resume.objects.get(id=id)
+    if request.method == 'POST':
+        resume.title = request.POST['title']
+        resume.text = request.POST['description']
+        resume.save()
+        return redirect(f'/resume-info/{resume.id}/')
+    return render(request,
+        'resume/resume_edit.html',
+        {'resume': resume}
+            )
 
 
 

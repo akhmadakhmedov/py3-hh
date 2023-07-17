@@ -4,8 +4,8 @@
 
     <form method="POST">
         {% csrf_token %}
-        <input type = 'text', name="form-title">
-        <textarea name="form-text" cols="20" rows="5"></textarea>
+        <input type = 'text', name="title" placeholder="Title">
+        <textarea name="description" cols="20" rows="5" placeholder="Description"></textarea>
         <button>Add</button>
     </form>
 
