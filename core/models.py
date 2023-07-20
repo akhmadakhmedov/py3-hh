@@ -1,5 +1,6 @@
 from django.db import models
 from worker.models import Worker, Resume
+
 class Vacancy(models.Model):
     title = models.CharField(max_length=255)
     salary = models.IntegerField(null=True, blank=True)
@@ -39,12 +40,13 @@ class Category(models.Model):
 
 class Company(models.Model):
     name = models.CharField(max_length=255)
-    address = models.TextField(default='Address does not shown')
-    staff_quantity = models.IntegerField()
-    is_hunting = models.BooleanField(default=False)
-
+    created_date = models.DateField()
+    workers = models.ManyToManyField(
+        to=Worker,
+        blank=True,
+        related_name='company',
+    )
 
     def __str__(self):
         return self.name
-
 

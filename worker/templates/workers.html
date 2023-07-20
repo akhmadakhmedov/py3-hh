@@ -4,7 +4,7 @@
         {% endblock %}
 {% block content %}
 
-    <h1>Spisok rabochiye lyudi</h1>
+    <h1 class="candidate-title">Candidates</h1>
     {% for w in workers %}
         <div>{{ w.name }} - {{ w.specialisation }}</div>
     {% endfor %}
