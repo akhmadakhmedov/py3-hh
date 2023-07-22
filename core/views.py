@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Vacancy, Company
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from .forms import VacancyForm, CompanyForm, VacancyEditForm
 
 def homepage(request):
@@ -46,6 +47,25 @@ def search(request):
     vacancy_list = Vacancy.objects.filter(title__contains=word)
     context = {'vacancies': vacancy_list}
     return render(request, 'vacancies.html', context)
+
+def sign_in(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            # authorisation
+            login(request, user)
+            return redirect('home')
+        else:
+            return HttpResponse("Error username or password")
+
+    return render(request, 'auth/sign-in.html')
+
+def sign_out(request):
+    logout(request)
+    return redirect(sign_in)
+
 
 def reg_view(request):
     if request.method == 'POST':

@@ -1,0 +1,37 @@
+<!doctype html>
+{% load static %}
+{% load bootstrap5 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Authorisation</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'my_style.css' %}">
+</head>
+<body>
+    {% bootstrap_messages %}
+    <br><br><br>
+    <div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h4>Enter your Login and Password</h4>
+
+        <div class="mb-3 mt-3">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name='username' placeholder="Username">
+          </div>
+          <div class="mb-3">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+          </div>
+        <button class="btn btn-warning">Sign in</button>
+    </form>
+    </div>
+
+</body>
+</html>

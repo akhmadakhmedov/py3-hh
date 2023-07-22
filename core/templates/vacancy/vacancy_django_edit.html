@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% bootstrap_form form %}
         <button>Save and Edit</button>
     </form>
 {% endblock %}

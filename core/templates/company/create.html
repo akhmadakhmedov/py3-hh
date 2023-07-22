@@ -1,28 +1,12 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
 
     <form method = 'POST'>
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-warning">Create</button>
+        {% bootstrap_form form %}
+        <button class="btn btn-success">Create</button>
     </form>
-<hr>
-
-
-<form action="/action_page.php">
-  <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd">
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
 
 {% endblock %}

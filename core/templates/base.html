@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 {% load static %}
+{% load bootstrap5 %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -56,10 +57,16 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'add-resume' %}">Add Resume</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'sign-out' %}">Sign out</a>
+                </li>
                 Hello, {{ request.user.username }}!
              {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'add-resume' %}">Registration</a>Please sign in
+                  <a class="nav-link" href="{% url 'reg' %}">Registration</a>Please sign in
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'sign-in' %}">Sign in</a>
                 </li>
              {% endif %}
           </ul>

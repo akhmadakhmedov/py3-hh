@@ -29,6 +29,8 @@ urlpatterns = [
     path("resume-edit/<int:id>/", resume_edit, name='resume-edit'),
     path("search/", search, name='search'),
     path('registration/', reg_view, name='reg'),
+    path("sign-in", sign_in, name='sign-in'),
+    path("sign-out", sign_out, name='sign-out'),
     path('create_company', create_company, name='create-company'),
     path('company_edit/<int:id>/', company_edit, name='company-edit'),
 
