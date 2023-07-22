@@ -19,6 +19,7 @@ urlpatterns = [
     path('add-vacancy-df/', vacancy_add_via_django_form),
     path('vacancy/<int:id>/', vacancy_detail, name='vacancy-info'),
     path("vacancy-edit/<int:id>/", vacancy_edit, name='vacancy-edit'),
+    path("vacancy-django-edit/<int:id>/", vacancy_django_edit, name='vacancy-django-edit'),
     path('workers/', workers),
     path("worker/<int:id>/", worker_info),
     path('resume-list/', resume_list),
@@ -29,7 +30,7 @@ urlpatterns = [
     path("search/", search, name='search'),
     path('registration/', reg_view, name='reg'),
     path('create_company', create_company, name='create-company'),
-    path('company_edit</int:id/>', company_edit, name='company-edit'),
+    path('company_edit/<int:id>/', company_edit, name='company-edit'),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
