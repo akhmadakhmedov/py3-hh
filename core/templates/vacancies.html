@@ -4,7 +4,7 @@
         {% endblock %}
 {% block content %}
     <h1>Spisok Vakansii</h1>
-    {% for v in vacancies%}
+    {% for v in vacancies %}
         <div>
             <a href="{% url 'vacancy-info' v.id %}">
                 {{ v.title }}

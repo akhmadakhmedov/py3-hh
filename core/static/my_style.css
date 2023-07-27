@@ -1,7 +1,18 @@
-h1 {
-    color:red;
-}
 
 .candidate-title {
     color:blue;
+}
+
+.homepage {
+    background:
+        linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+        url("office.jpeg")
+        center / cover;
+    padding: 10px;
+    height: 60vh;
+    color: white;
+}
+
+.homepage h1{
+    color:#eee;
 }

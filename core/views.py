@@ -3,6 +3,7 @@ from .models import Vacancy, Company
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import VacancyForm, CompanyForm, VacancyEditForm
+#from .filters import VacancyFilter
 
 def homepage(request):
     return render(request=request, template_name='index.html')
@@ -31,6 +32,8 @@ def address(request):
 def vacancy_list(request):
     vacancies = Vacancy.objects.all() # v DJANGO ORM "SELECT * FROM Vacancies"
     context = {'vacancies': vacancies} # context data for jinja2
+    #vacancy_filter = VacancyFilter(request.GET, queryset=Vacancy.objects.all())
+    #context={"vacancy_filter": vacancy_filter}
     return render(request, 'vacancies.html', context)
 
 def vacancy_detail(request, id):
@@ -44,7 +47,7 @@ def vacancy_detail(request, id):
 
 def search(request):
     word = request.GET['keyword']
-    vacancy_list = Vacancy.objects.filter(title__contains=word)
+    vacancy_list = Vacancy.objects.filter(title__icontains=word)
     context = {'vacancies': vacancy_list}
     return render(request, 'vacancies.html', context)
 
