@@ -3,8 +3,15 @@
             My vacancies
         {% endblock %}
 {% block content %}
-    <h1>Spisok Vakansii</h1>
-    {% for v in vacancies %}
+    <h1>List of Vacancies</h1>
+
+    <form method="get">
+        {{ vacancy_filter.form.as_p }}
+        <input type="submit" />
+    </form>
+
+
+    {% for v in vacancy_filter.qs %}
         <div>
             <a href="{% url 'vacancy-info' v.id %}">
                 {{ v.title }}
