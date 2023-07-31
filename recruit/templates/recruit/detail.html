@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Recruiter {{ recruiter_object.user.username }}</h1>
+    <div>City: {{ recruiter_object.city }}</div>
+    <div>Country: {{ recruiter_object.country | default_if_none:"Not defined"}}</div>
+    <div>Payment per candidate: {{ recruiter_object.payment_for_found }}</div>
+    <div>Bonus percent: {{ recruiter_object.bonus_percent }}</div>
+
+
+{% endblock %}

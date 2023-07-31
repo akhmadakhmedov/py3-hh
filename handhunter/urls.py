@@ -1,10 +1,11 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from core.views import *
 from worker.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView
 
 
 
@@ -30,9 +31,11 @@ urlpatterns = [
     path("search/", search, name='search'),
     path('registration/', reg_view, name='reg'),
     path("sign-in", sign_in, name='sign-in'),
+    path('login-generic/', LoginView.as_view(), name='login-generic'),
     path("sign-out", sign_out, name='sign-out'),
     path('create_company', create_company, name='create-company'),
     path('company_edit/<int:id>/', company_edit, name='company-edit'),
+    path('recruit/', include('recruit.urls'))
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
