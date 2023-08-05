@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Worker, Resume
 from .forms import ResumeEditForm
-# Create your views here.
+
+
 def workers(request):
     workers = Worker.objects.all()
     context = {'workers': workers}

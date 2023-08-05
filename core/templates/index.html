@@ -23,4 +23,22 @@
 
         </div>
     </div>
+    <div class="container">
+        <h2>Top 5 Vacancies</h2>
+        {% for v in vacancies %}
+            <p>
+                <a href="{% url 'vacancy-info' v.id %}">
+                    {{ v.title }}
+                </a>
+            </p>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h2>Top 3 Companies</h2>
+        {% for c in companies %}
+            <a href="{% url 'company-info' c.id %}">
+                <p>{{ c.name }}</p>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock%}

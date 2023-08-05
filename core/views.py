@@ -2,11 +2,17 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import Vacancy, Company
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import VacancyForm, CompanyForm, VacancyEditForm
 from .filters import VacancyFilter
 
 def homepage(request):
-    return render(request=request, template_name='index.html')
+    if request.method== 'POST':
+        return HttpResponse('Method is not allowed, only GET', status=405)
+    context = {}
+    context["vacancies"] = Vacancy.objects.all()[:5]
+    context["companies"]=Company.objects.all()[:3]
+    return render(request=request, template_name='index.html', context=context)
 
 def about(request):
     return HttpResponse('''
@@ -38,7 +44,10 @@ def vacancy_list(request):
 
 
 def vacancy_detail(request, id):
-    vacancy_object = Vacancy.objects.get(id=id) # one object
+    try:
+        vacancy_object = Vacancy.objects.get(id=id) # one object
+    except ObjectDoesNotExist:
+        return HttpResponse('You entered wrong get request', status=404)
     candidates = vacancy_object.candidate.all() #list
     context = {
         'vacancy': vacancy_object,
@@ -142,6 +151,14 @@ def vacancy_django_edit(request, id):
             return HttpResponse("Form is not valid")
 
 
+def company_list(request):
+    companies = Company.objects.all() # v DJANGO ORM "SELECT * FROM Vacancies"
+    context = {'companies': companies} # context data for jinja2
+    #vacancy_filter = VacancyFilter(request.GET, queryset=Vacancy.objects.all())
+    #context={"vacancy_filter": vacancy_filter}
+    return render(request, 'company/companies.html', context)
+
+
 def create_company(request):
     context = {}
 
@@ -153,6 +170,14 @@ def create_company(request):
     company_form = CompanyForm()
     context['form'] = company_form
     return render(request, 'company/create.html', context)
+
+def company_detail(request, id):
+    try:
+        company_object = Company.objects.get(id=id) # one object
+    except ObjectDoesNotExist:
+        return HttpResponse('You entered wrong get request', status=404)
+    context = {'company': company_object}
+    return render(request, 'company/company_page.html', context)
 
 def company_edit(request, id):
     company_object = Company.objects.get(id=id)

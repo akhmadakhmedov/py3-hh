@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>List of Companies</h1>
+
+    {% for c in companies %}
+        <div>
+            <a href="{% url 'company-info' c.id %}">
+                {{ c.name }}
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}
