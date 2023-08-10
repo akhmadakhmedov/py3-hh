@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Author: {{ news_object.author }}</h1>
+    <div>Title: {{ news_object.title }}</div>
+    <div>Content: {{ new.text }}</div>
+    <div>Created Date: {{ news_object.created_date }}</div>
+    <div>Viewed: {{ new.views_count }}</div>
+    <div>Unical Viewed: {{ new.user_views.count }}</div>
+    <div>Unical Viewed 2: {{ new.newsviews_set.count }}</div>
+
+    <a href="{% url 'news-update' new.id %}"><button class="btn btn-success">Edit News</button></a>
+
+
+{% endblock %}

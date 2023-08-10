@@ -28,6 +28,7 @@ class RecruitListView(LoginRequiredMixin,ListView):
 class RecruiterCreateView(CreateView):
     model = Recruiter
     fields = '__all__'
+    success_url = reverse_lazy('recruiter-list-class')
 
 class RecruiterUpdateView(View):
     template = 'recruit/update.html'

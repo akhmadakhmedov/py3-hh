@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Articles</h1>
+        {% for n in news %}
+            <div>
+                <a href="{% url 'news-detail' n.pk %}">{{ n.title }}</a>
+            </div>
+        {% empty %}
+            <div>No any records yet</div>
+        {% endfor %}
+    <hr>
+    <a href="{% url 'create-news' %}"><button class="btn btn-success">Add New News</button></a>
+
+
+{% endblock %}

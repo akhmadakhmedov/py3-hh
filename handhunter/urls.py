@@ -37,7 +37,8 @@ urlpatterns = [
     path('create_company', create_company, name='create-company'),
     path('company_edit/<int:id>/', company_edit, name='company-edit'),
     path('company/<int:id>/', company_detail, name='company-info'),
-    path('recruit/', include('recruit.urls'))
+    path('recruit/', include('recruit.urls')),
+    path('news/', include('news.urls'))
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
